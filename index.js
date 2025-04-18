@@ -6,16 +6,16 @@ app.use(express.json());
 app.post('/npc-ai', async (req, res) => {
   const prompt = req.body.prompt;
   try {
-    const response = await axios.post(
-    "[https://api.openai.com/v1/chat/completions",](https://api.openai.com/v1/chat/completions",)
-      {
-        model: "gpt-3.5-turbo",
-        messages: [{role: "user", content: prompt}]
-      },
-      {
-        headers: { "Authorization": `Bearer ${process.env.OPENAI_API_KEY}` }
-      }
-    );
+ const response = await axios.post(
+  '[https://api.openai.com/v1/chat/completions',](https://api.openai.com/v1/chat/completions',)
+  {
+    model: "gpt-3.5-turbo",
+    messages: [{role: "user", content: prompt}]
+  },
+  {
+    headers: { "Authorization": `Bearer ${process.env.OPENAI_API_KEY}` }
+  }
+);
     res.json({ reply: response.data.choices[0].message.content });
   } catch (e) {
     res.status(500).json({ error: e.toString() });
